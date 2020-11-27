@@ -69,7 +69,7 @@ public class EmployeeServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("authentication/login.jsp");
 		dispatcher.forward(request, response);
 	}
 

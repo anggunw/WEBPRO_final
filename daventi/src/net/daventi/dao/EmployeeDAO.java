@@ -15,12 +15,10 @@ public class EmployeeDAO {
 
         int result = 0;
 
-        Class.forName("com.mysql.jdbc.Driver");
+        Class.forName("com.mysql.cj.jdbc.Driver");
 
         try (Connection connection = DriverManager
             .getConnection(DaVentiConstants.URL, DaVentiConstants.USER, DaVentiConstants.PASS);
-
-            // Step 2:Create a statement using connection object
             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL)) {
             preparedStatement.setString(1, employee.getId_employee());
             preparedStatement.setString(2, employee.getName_employee());
@@ -31,11 +29,10 @@ public class EmployeeDAO {
             preparedStatement.setString(7, employee.getRole());
 
             System.out.println(preparedStatement);
-            // Step 3: Execute the query or update query
+
             result = preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
-            // process sql exception
             printSQLException(e);
         }
         return result;
