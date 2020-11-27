@@ -28,10 +28,17 @@
 					<li><a href="<%=request.getContextPath()%>/status"
 						class="nav-link">Status</a></li>
 					<li><a href="<%=request.getContextPath()%>/method"
-						class="nav-link">Payment Method</a></li>			
+						class="nav-link">Payment Method</a></li>
+					<li><a href="<%=request.getContextPath()%>/promo"
+					class="nav-link">Promo</a></li>
+				</ul>
+				
+				<ul class="navbar-nav">
+					<li><a href="<%=request.getContextPath()%>/logout"
+						class="nav-link">Logout</a></li>
 				</ul>
 			</nav>
-	</header>
+		</header>
 	<br>
 
 	<div class="row">

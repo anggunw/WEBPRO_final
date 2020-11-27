@@ -3,14 +3,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-<title>Da Venti - Method</title>
+<title>Da Venti - Promo</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
 </head>
 <body>
-
 	<header>
 			<nav class="navbar navbar-expand-md navbar-dark"
 				style="background-color: #af6b58">
@@ -42,48 +41,60 @@
 	<br>
 	<div class="container col-md-5">
 		<div class="card">
-			<div class="card-body">		
-				<form action="${pageContext.request.contextPath}/method" method="post">
-				
+			<div class="card-body">
+				<form action="${pageContext.request.contextPath}/promo" method="post">
+
 				<caption>
 					<h2>
-						<c:if test="${method != null}">
-            				Edit Payment Method
-            			</c:if>
-						<c:if test="${method == null}">
-            				Add New Payment Method
-            			</c:if>
+						<c:if test="${promo != null}">
+	            			Edit Promo
+	            		</c:if>
+						<c:if test="${promo == null}">
+	            			Add New Promo
+	            		</c:if>
 					</h2>
 				</caption>
 
-				<c:if test="${method != null}">
+				<c:if test="${promo != null}">
 					<fieldset class="form-group">
-						<label>ID</label> <input type="text" readonly
-							value="<c:out value='${method.id_method}' />" class="form-control"
-							name="id_method">
+						<label>Promo ID</label> <input type="text" readonly
+							value="<c:out value='${promo.id_promo}' />" class="form-control"
+							name="id_promo">
 					</fieldset>
 					<input type="hidden" name="type" value="UPDATE" />
 				</c:if>
 				
-				<c:if test="${method == null}">
+				<c:if test="${promo == null}">
 					<fieldset class="form-group">
-						<label>ID</label> <input type="text"
-							value="<c:out value='${method.id_method}' />" class="form-control"
-							name="id_method" required="required">
+						<label>Promo ID</label> <input type="text"
+							value="<c:out value='${promo.id_promo}' />" class="form-control"
+							name="id_promo" required="required">
 					</fieldset>
 					<input type="hidden" name="type" value="INSERT" />
 				</c:if>
 				
 				<fieldset class="form-group">
-					<label>Payment Method</label> <input type="text"
-						value="<c:out value='${method.name_method}' />" class="form-control"
-						name="name_method" required="required">
+					<label>Name</label> <input type="text"
+						value="<c:out value='${promo.name_promo}' />" class="form-control"
+						name="name_promo" required="required">
 				</fieldset>
 				
 				<fieldset class="form-group">
-					<label>Destination Bank</label> <input type="text"
-						value="<c:out value='${method.dest_bank}' />" class="form-control"
-						name="dest_bank" required="required">
+					<label>Discount</label> <input type="text"
+						value="<c:out value='${promo.discount}' />" class="form-control"
+						name="discount" required="required">
+				</fieldset>
+				
+				<fieldset class="form-group">
+					<label>Start Discount</label> <input type="date"
+						value="<c:out value='${promo.start_discount}' />" class="form-control"
+						name="discount" required="required">
+				</fieldset>
+				
+				<fieldset class="form-group">
+					<label>End Discount</label> <input type="date"
+						value="<c:out value='${promo.end_discount}' />" class="form-control"
+						name="discount" required="required">
 				</fieldset>
 				
 				<button type="submit" class="btn btn-success">Save</button>

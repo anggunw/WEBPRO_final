@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-<title>Da Venti - Status</title>
+<title>Da Venti - Promo</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
@@ -40,48 +40,46 @@
 			</nav>
 		</header>
 	<br>
-	<div class="container col-md-5">
-		<div class="card">
-			<div class="card-body">		
-				<form action="${pageContext.request.contextPath}/status" method="post">
-				
-				<caption>
-					<h2>
-						<c:if test="${status != null}">
-            				Edit Status
-            			</c:if>
-						<c:if test="${status == null}">
-            				Add New Status
-            			</c:if>
-					</h2>
-				</caption>
 
-				<c:if test="${status != null}">
-					<fieldset class="form-group">
-						<label>Status ID</label> <input type="text" readonly
-							value="<c:out value='${status.id_status}' />" class="form-control"
-							name="id_status">
-					</fieldset>
-					<input type="hidden" name="type" value="UPDATE" />
-				</c:if>
-				
-				<c:if test="${status == null}">
-					<fieldset class="form-group">
-						<label>Status ID</label> <input type="text"
-							value="<c:out value='${status.id_status}' />" class="form-control"
-							name="id_status" required="required">
-					</fieldset>
-					<input type="hidden" name="type" value="INSERT" />
-				</c:if>
-				
-				<fieldset class="form-group">
-					<label>Status Name</label> <input type="text"
-						value="<c:out value='${status.name_status}' />" class="form-control"
-						name="name_status" required="required">
-				</fieldset>
-				<button type="submit" class="btn btn-success">Save</button>
-				</form>
+	<div class="row">
+		<div class="container">
+			<h3 class="text-center">List of Promo</h3>
+			<hr>
+			<div class="container text-left">
+
+				<a href="<%=request.getContextPath()%>/promo/promo-form.jsp" class="btn btn-success">Add
+					New Promo</a>
 			</div>
+			<br>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Name</th>
+						<th>Discount</th>
+						<th>Start</th>
+						<th>End</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="promo" items="${listPromo}">
+						<tr>
+							<td><c:out value="${promo.id_promo}" /></td>
+							<td><c:out value="${promo.name_promo}" /></td>
+							<td><c:out value="${promo.discount}" /></td>
+							<td><c:out value="${promo.start_discount}" /></td>
+							<td><c:out value="${promo.end_discount}" /></td>
+							
+							<td><a class="btn btn-warning" href="?action=EDIT&id_promo=<c:out value='${promo.id_promo}' />">Edit</a>
+								&nbsp;&nbsp;&nbsp;&nbsp; 
+								<a class="btn btn-danger" href="?action=DELETE&id_promo=<c:out value='${promo.id_promo}' />">Delete</a>
+							</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+
+			</table>
 		</div>
 	</div>
 </body>
