@@ -20,10 +20,14 @@
 			<ul class="navbar-nav">
 				<li><a href="<%=request.getContextPath()%>/category"
 					class="nav-link">Categories</a></li>
-				<li><a href="<%=request.getContextPath()%>/author/list"
+				<li><a href="<%=request.getContextPath()%>/author"
 					class="nav-link">Author</a></li>
-				<li><a href="<%=request.getContextPath()%>/publisher/list"
+				<li><a href="<%=request.getContextPath()%>/publisher"
 					class="nav-link">Publisher</a></li>
+				<li><a href="<%=request.getContextPath()%>/status"
+					class="nav-link">Status</a></li>
+				<li><a href="<%=request.getContextPath()%>/method"
+					class="nav-link">Payment Method</a></li>
 			</ul>
 		</nav>
 	</header>
@@ -31,12 +35,7 @@
 	<div class="container col-md-5">
 		<div class="card">
 			<div class="card-body">
-				<c:if test="${publisher != null}">				
-					<form action="update" method="post">
-				</c:if>
-				<c:if test="${publisher == null}">				
-					<form action="insert" method="post">
-				</c:if>
+				<form action="${pageContext.request.contextPath}/publisher" method="post">
 
 				<caption>
 					<h2>
@@ -50,19 +49,33 @@
 				</caption>
 
 				<c:if test="${publisher != null}">
-					<input type="hidden" name="id_publisher" value="<c:out value='${publisher.id_publisher}' />" />
+					<fieldset class="form-group">
+						<label>Publisher ID</label> <input type="text" readonly
+							value="<c:out value='${publisher.id_publisher}' />" class="form-control"
+							name="id_publisher">
+					</fieldset>
+					<input type="hidden" name="type" value="UPDATE" />
 				</c:if>
+				
 				<c:if test="${publisher == null}">
 					<fieldset class="form-group">
 						<label>Publisher ID</label> <input type="text"
 							value="<c:out value='${publisher.id_publisher}' />" class="form-control"
 							name="id_publisher" required="required">
 					</fieldset>
+					<input type="hidden" name="type" value="INSERT" />
 				</c:if>
+				
 				<fieldset class="form-group">
 					<label>Publisher Name</label> <input type="text"
 						value="<c:out value='${publisher.name_publisher}' />" class="form-control"
 						name="name_publisher" required="required">
+				</fieldset>
+				
+				<fieldset class="form-group">
+					<label>Publisher Email</label> <input type="text"
+						value="<c:out value='${publisher.email_publisher}' />" class="form-control"
+						name="email_publisher" required="required">
 				</fieldset>
 				<button type="submit" class="btn btn-success">Save</button>
 				</form>

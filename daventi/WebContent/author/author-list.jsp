@@ -20,9 +20,9 @@
 			<ul class="navbar-nav">
 				<li><a href="<%=request.getContextPath()%>/category"
 					class="nav-link">Categories</a></li>
-				<li><a href="<%=request.getContextPath()%>/author/list"
+				<li><a href="<%=request.getContextPath()%>/author"
 					class="nav-link">Author</a></li>
-				<li><a href="<%=request.getContextPath()%>/publisher/list"
+				<li><a href="<%=request.getContextPath()%>/publisher"
 					class="nav-link">Publisher</a></li>
 				<li><a href="<%=request.getContextPath()%>/status"
 					class="nav-link">Status</a></li>
@@ -39,7 +39,7 @@
 			<hr>
 			<div class="container text-left">
 
-				<a href="<%=request.getContextPath()%>/author/new" class="btn btn-success">Add
+				<a href="<%=request.getContextPath()%>/author/author-form.jsp" class="btn btn-success">Add
 					New Author</a>
 			</div>
 			<br>
@@ -56,9 +56,9 @@
 						<tr>
 							<td><c:out value="${author.id_author}" /></td>
 							<td><c:out value="${author.name_author}" /></td>
-							<td><a class="btn btn-warning" href="edit?id_author=<c:out value='${author.id_author}' />">Edit</a>
+							<td><a class="btn btn-warning" href="?action=EDIT&id_author=<c:out value='${author.id_author}' />">Edit</a>
 								&nbsp;&nbsp;&nbsp;&nbsp; 
-								<a class="btn btn-danger" href="delete?id_author=<c:out value='${author.id_author}' />">Delete</a>
+								<a class="btn btn-danger" href="?action=DELETE&id_author=<c:out value='${author.id_author}' />">Delete</a>
 							</td>
 						</tr>
 					</c:forEach>

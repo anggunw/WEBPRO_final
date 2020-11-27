@@ -20,10 +20,14 @@
 			<ul class="navbar-nav">
 				<li><a href="<%=request.getContextPath()%>/category"
 					class="nav-link">Categories</a></li>
-				<li><a href="<%=request.getContextPath()%>/author/list"
+				<li><a href="<%=request.getContextPath()%>/author"
 					class="nav-link">Author</a></li>
-				<li><a href="<%=request.getContextPath()%>/publisher/list"
+				<li><a href="<%=request.getContextPath()%>/publisher"
 					class="nav-link">Publisher</a></li>
+				<li><a href="<%=request.getContextPath()%>/status"
+					class="nav-link">Status</a></li>
+				<li><a href="<%=request.getContextPath()%>/method"
+					class="nav-link">Payment Method</a></li>
 			</ul>
 		</nav>
 	</header>
@@ -35,7 +39,7 @@
 			<hr>
 			<div class="container text-left">
 
-				<a href="<%=request.getContextPath()%>/publisher/new" class="btn btn-success">Add
+				<a href="<%=request.getContextPath()%>/publisher/publisher-form.jsp" class="btn btn-success">Add
 					New Publisher</a>
 			</div>
 			<br>
@@ -49,14 +53,14 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="publisher" items="${lisPublisher}">
+					<c:forEach var="publisher" items="${listPublisher}">
 						<tr>
 							<td><c:out value="${publisher.id_publisher}" /></td>
 							<td><c:out value="${publisher.name_publisher}" /></td>
 							<td><c:out value="${publisher.email_publisher}" /></td>
-							<td><a class="btn btn-warning" href="edit?id_publisher=<c:out value='${publisher.id_publisher}' />">Edit</a>
+							<td><a class="btn btn-warning" href="?action=EDIT&id_publisher=<c:out value='${publisher.id_publisher}' />">Edit</a>
 								&nbsp;&nbsp;&nbsp;&nbsp; 
-								<a class="btn btn-danger" href="delete?id_publisher=<c:out value='${publisher.id_publisher}' />">Delete</a>
+								<a class="btn btn-danger" href="?action=DELETE&id_publisher=<c:out value='${publisher.id_publisher}' />">Delete</a>
 							</td>
 						</tr>
 					</c:forEach>

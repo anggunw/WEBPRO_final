@@ -14,11 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import net.daventi.dao.PublisherDAO;
 import net.daventi.model.Publisher;
+import net.daventi.model.Publisher;
 
 /**
  * Servlet implementation class PublisherServlet
  */
-@WebServlet("/Publisher")
+@WebServlet("/publisher")
 public class PublisherServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private PublisherDAO publisherDao;
@@ -35,31 +36,55 @@ public class PublisherServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String action = request.getParameter("type");
+
+		Publisher publisher = new Publisher();
+		publisher.setId_publisher(request.getParameter("id_publisher"));
+		publisher.setName_publisher(request.getParameter("name_publisher"));
+		publisher.setEmail_publisher(request.getParameter("email_publisher"));
+		
+		if(action == null) {
+			action = "list";
+		}
+		try {
+			switch (action) {
+			case "INSERT":
+				publisherDao.insertPublisher(publisher);
+				break;
+			case "UPDATE":
+				publisherDao.updatePublisher(publisher);
+				break;
+			default:
+				listPublisher(request, response);
+				break;
+			}
+		} catch (SQLException ex) {
+			throw new ServletException(ex);
+		}
+		
+		try {
+			listPublisher(request, response);
+		} catch (SQLException | IOException | ServletException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String action = request.getServletPath();
+		String action = request.getParameter("action");
+		
+		if(action == null) {
+			action = "list";
+		}
 		try {
-			switch(action) {
-			case "/publisher/new":
-				showNewForm(request, response);
-				break;
-			case "/publisher/insert":
-				insertPublisher(request, response);
-				break;
-			case "/publisher/delete":
+			switch (action) {
+			case "DELETE":
 				deletePublisher(request, response);
 				break;
-			case "/publisher/edit":
+			case "EDIT":
 				showEditForm(request, response);
-				break;
-			case "/publisher/update":
-				updatePublisher(request, response);
 				break;
 			default:
 				listPublisher(request, response);
@@ -70,25 +95,6 @@ public class PublisherServlet extends HttpServlet {
 		}
 		
 	}
-
-
-	private void showNewForm(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("publisher-form.jsp");
-		dispatcher.forward(request, response);
-	}
-	
-	// insert publisher
-	private void insertPublisher(HttpServletRequest request, HttpServletResponse response)
-			throws SQLException, IOException {
-		String id_publisher = request.getParameter("id_publisher");
-		String name_publisher = request.getParameter("name_publisher");
-		String email_publisher = request.getParameter("email_publisher");
-		Publisher newPublisher = new Publisher(id_publisher, name_publisher, email_publisher);
-		
-		publisherDao.insertPublisher(newPublisher);
-		response.sendRedirect("list");
-	}
 	
 	// edit publisher
 	private void showEditForm(HttpServletRequest request, HttpServletResponse response)
@@ -98,24 +104,12 @@ public class PublisherServlet extends HttpServlet {
 		Publisher existingPublisher;
 		try {
 			existingPublisher = publisherDao.selectPublisher(id_publisher);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("publisher-form.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("publisher/publisher-form.jsp");
 			request.setAttribute("publisher", existingPublisher);
 			dispatcher.forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-	
-	// update publisher
-	private void updatePublisher(HttpServletRequest request, HttpServletResponse response)
-			throws SQLException, IOException {
-		String id_publisher = request.getParameter("id_publisher");
-		String name_publisher = request.getParameter("name_publisher");
-		String email_publisher = request.getParameter("email_publisher");
-		
-		Publisher publisher = new Publisher(id_publisher, name_publisher, email_publisher);
-		publisherDao.updatePublisher(publisher);
-		response.sendRedirect("list");
 	}
 	
 	// delete publisher
@@ -127,7 +121,7 @@ public class PublisherServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		response.sendRedirect("list");
+		response.sendRedirect("publisher");
 	}
 	
 	// default
@@ -136,7 +130,7 @@ public class PublisherServlet extends HttpServlet {
 		try {
 			List<Publisher> listPublisher = publisherDao.selectAllPublisher();
 			request.setAttribute("listPublisher", listPublisher);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("publisher-list.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("publisher/publisher-list.jsp");
 			dispatcher.forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();

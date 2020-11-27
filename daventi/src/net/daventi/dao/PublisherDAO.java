@@ -17,9 +17,9 @@ public class PublisherDAO {
 	
 	private static final String INSERT_PUBLISHER_SQL = "INSERT INTO publisher" + "(id_publisher, name_publisher, email_publisher) VALUES" + "(?, ?, ?);";
 	
-	private static final String SELECT_PUBLISHER_BY_ID = "select id_publisher, name_publisher from publisher where id_publisher=?";
+	private static final String SELECT_PUBLISHER_BY_ID = "select id_publisher, name_publisher, email_publisher from publisher where id_publisher=?";
 	private static final String SELECT_ALL_PUBLISHER = "select * from publisher";
-	private static final String DELETE_PUBLISHER_SQL = "delete from publisher where id_publisherr=?;";
+	private static final String DELETE_PUBLISHER_SQL = "delete from publisher where id_publisher=?;";
 	private static final String UPDATE_PUBLISHER_SQL = "update publisher set name_publisher=?, email_publisher=? where id_publisher=?;";
 	
 	protected Connection getConnection() {

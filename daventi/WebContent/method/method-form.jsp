@@ -21,9 +21,9 @@
 				<ul class="navbar-nav">
 					<li><a href="<%=request.getContextPath()%>/category"
 						class="nav-link">Categories</a></li>
-					<li><a href="<%=request.getContextPath()%>/author/list"
+					<li><a href="<%=request.getContextPath()%>/author"
 						class="nav-link">Author</a></li>
-					<li><a href="<%=request.getContextPath()%>/publisher/list"
+					<li><a href="<%=request.getContextPath()%>/publisher"
 						class="nav-link">Publisher</a></li>
 					<li><a href="<%=request.getContextPath()%>/status"
 						class="nav-link">Status</a></li>

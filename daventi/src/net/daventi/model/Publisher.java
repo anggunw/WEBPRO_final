@@ -16,6 +16,9 @@ public class Publisher {
 		this.name_publisher = name_publisher;
 		this.email_publisher = email_publisher;
 	}
+	public Publisher() {
+		super();
+	}
 	public String getId_publisher() {
 		return id_publisher;
 	}

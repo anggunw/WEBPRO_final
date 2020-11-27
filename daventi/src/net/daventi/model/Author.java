@@ -15,6 +15,10 @@ public class Author {
 		this.name_author = name_author;
 	}
 	
+	public Author() {
+		super();
+	}
+	
 	public String getId_author() {
 		return id_author;
 	}

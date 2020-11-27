@@ -18,7 +18,7 @@
 			</div>
 	
 			<ul class="navbar-nav">
-				<li><a href="<%=request.getContextPath()%>/category"
+				<li><a href="<%=request.getContextPath()%>/author"
 					class="nav-link">Categories</a></li>
 				<li><a href="<%=request.getContextPath()%>/author/list"
 					class="nav-link">Author</a></li>
@@ -35,12 +35,8 @@
 	<div class="container col-md-5">
 		<div class="card">
 			<div class="card-body">
-				<c:if test="${author != null}">				
-					<form action="update" method="post">
-				</c:if>
-				<c:if test="${author == null}">				
-					<form action="insert" method="post">
-				</c:if>
+				<form action="${pageContext.request.contextPath}/author" method="post">
+
 
 				<caption>
 					<h2>
@@ -54,15 +50,23 @@
 				</caption>
 
 				<c:if test="${author != null}">
-					<input type="hidden" name="id_author" value="<c:out value='${author.id_author}' />" />
+					<fieldset class="form-group">
+						<label>Author ID</label> <input type="text" readonly
+							value="<c:out value='${author.id_author}' />" class="form-control"
+							name="id_author">
+					</fieldset>
+					<input type="hidden" name="type" value="UPDATE" />
 				</c:if>
+				
 				<c:if test="${author == null}">
 					<fieldset class="form-group">
 						<label>Author ID</label> <input type="text"
 							value="<c:out value='${author.id_author}' />" class="form-control"
 							name="id_author" required="required">
 					</fieldset>
+					<input type="hidden" name="type" value="INSERT" />
 				</c:if>
+				
 				<fieldset class="form-group">
 					<label>Author Name</label> <input type="text"
 						value="<c:out value='${author.name_author}' />" class="form-control"
