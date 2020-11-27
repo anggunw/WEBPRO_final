@@ -29,12 +29,9 @@
 					<li><a href="<%=request.getContextPath()%>/method"
 						class="nav-link">Payment Method</a></li>
 					<li><a href="<%=request.getContextPath()%>/promo"
-					class="nav-link">Promo</a></li>
-				</ul>
-				
-				<ul class="navbar-nav">
+						class="nav-link">Promo</a></li>
 					<li><a href="<%=request.getContextPath()%>/logout"
-						class="nav-link">Logout</a></li>
+						class="nav-link">Logout</a></li>		
 				</ul>
 			</nav>
 		</header>

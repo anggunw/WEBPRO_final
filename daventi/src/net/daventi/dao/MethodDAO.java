@@ -11,10 +11,6 @@ import java.util.List;
 import net.daventi.model.Method;
 
 public class MethodDAO {
-	private String url = "jdbc:mysql://node5959-daventi.ams.cloudswitches.com/DaVentiDB";
-	private String user = "root";
-	private String pass = "BTMxod62246";
-	
 	private static final String INSERT_METHOD_SQL = "INSERT INTO payment_method" + "  (id_method, name_method, dest_bank) VALUES "
 			+ " (?, ?, ?);";
 	
@@ -27,7 +23,7 @@ public class MethodDAO {
 		Connection connection = null;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			connection = DriverManager.getConnection(url, user, pass);
+			connection = DriverManager.getConnection(DaVentiConstants.URL, DaVentiConstants.USER, DaVentiConstants.PASS);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

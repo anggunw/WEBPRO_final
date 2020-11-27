@@ -33,8 +33,8 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		RequestDispatcher dispatcher = request.getRequestDispatcher("authentication/authentication-login.jsp");
+		dispatcher.forward(request, response);
 	}
 
 	/**
@@ -48,7 +48,7 @@ public class LoginServlet extends HttpServlet {
 				
         try {
             Employee employee = loginDAO.checkLogin(email, password);
-            String destPage = "authentication/login.jsp";
+            String destPage = "authentication/authentication-login.jsp";
              
             if (employee != null) {
                 HttpSession session = request.getSession();

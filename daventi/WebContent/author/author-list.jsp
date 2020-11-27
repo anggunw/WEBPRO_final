@@ -17,27 +17,25 @@
 					<a href="<%=request.getContextPath()%>/index.jsp" class="navbar-brand"> Da Venti </a>
 				</div>
 	
-				<ul class="navbar-nav">
-					<li><a href="<%=request.getContextPath()%>/category"
-						class="nav-link">Categories</a></li>
-					<li><a href="<%=request.getContextPath()%>/author"
-						class="nav-link">Author</a></li>
-					<li><a href="<%=request.getContextPath()%>/publisher"
-						class="nav-link">Publisher</a></li>
-					<li><a href="<%=request.getContextPath()%>/status"
-						class="nav-link">Status</a></li>
-					<li><a href="<%=request.getContextPath()%>/method"
-						class="nav-link">Payment Method</a></li>
-					<li><a href="<%=request.getContextPath()%>/promo"
+			<ul class="navbar-nav">
+				<li><a href="<%=request.getContextPath()%>/category"
+					class="nav-link">Categories</a></li>
+				<li><a href="<%=request.getContextPath()%>/author"
+					class="nav-link">Author</a></li>
+				<li><a href="<%=request.getContextPath()%>/publisher"
+					class="nav-link">Publisher</a></li>
+				<li><a href="<%=request.getContextPath()%>/status"
+					class="nav-link">Status</a></li>
+				<li><a href="<%=request.getContextPath()%>/method"
+					class="nav-link">Payment Method</a></li>
+				<li><a href="<%=request.getContextPath()%>/promo"
 					class="nav-link">Promo</a></li>
-				</ul>
+				<li><a href="<%=request.getContextPath()%>/logout"
+					class="nav-link">Logout</a></li>
 				
-				<ul class="navbar-nav">
-					<li><a href="<%=request.getContextPath()%>/logout"
-						class="nav-link">Logout</a></li>
-				</ul>
-			</nav>
-		</header>
+			</ul>
+		</nav>
+	</header>
 	<br>
 
 	<div class="row">

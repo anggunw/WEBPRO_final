@@ -32,11 +32,8 @@ public class EmployeeServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("employee-register.jsp");
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
+		RequestDispatcher dispatcher = request.getRequestDispatcher("authentication/authentication-register.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -69,7 +66,7 @@ public class EmployeeServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("authentication/login.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("authentication/authentication-login.jsp");
 		dispatcher.forward(request, response);
 	}
 

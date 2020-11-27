@@ -1,7 +1,5 @@
 package net.daventi.model;
 
-import java.util.String;
-
 public class Promo {
 	private String id_promo;
 	private String name_promo;

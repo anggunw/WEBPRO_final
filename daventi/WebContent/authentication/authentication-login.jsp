@@ -52,7 +52,8 @@
                 
         <p class="mt-4 mb-3 text-muted">Don't have an account?</p>
 
-        <button type="button" class="btn btn-outline-primary" onclick="document.location.href='/register';">Register</button>
+        <a href="<%=request.getContextPath()%>/register" class="btn btn-outline-primary">Register</a>
+
   </form>
 </body>
 </html>

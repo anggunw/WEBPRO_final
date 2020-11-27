@@ -2,6 +2,22 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
+
+<style>
+        body {
+        height: 100%;
+        }
+
+        .vertical-center {
+        min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+        min-height: 100vh; /* These two lines are counted as one :-)       */
+        width: 100%;
+        display: flex;
+        align-items: center;
+        }
+</style>
+
+
 <head>
 <title>Da Venti</title>
 <link rel="stylesheet"
@@ -30,16 +46,22 @@
 					<li><a href="<%=request.getContextPath()%>/method"
 						class="nav-link">Payment Method</a></li>
 					<li><a href="<%=request.getContextPath()%>/promo"
-					class="nav-link">Promo</a></li>
-				</ul>
-				
-				<ul class="navbar-nav">
+						class="nav-link">Promo</a></li>
 					<li><a href="<%=request.getContextPath()%>/logout"
-						class="nav-link">Logout</a></li>
+						class="nav-link">Logout</a></li>		
 				</ul>
 			</nav>
 		</header>
 
+	<div class="row text-center vertical-center">
+        <div class="col">
+            <h1 class="mb-2 display-4">Welcome, ${employee.name_employee}!</h1>
+            <blockquote class="blockquote">
+            <p class="mb-2">Thought is the wind, knowledge the sail, and mankind the vessel.</p>
+            <footer class="blockquote-footer"><cite title="Source Title">Augustus Hare</cite></footer>
+            </blockquote>
+        </div>
+    </div>
 
 </body>
 </html>

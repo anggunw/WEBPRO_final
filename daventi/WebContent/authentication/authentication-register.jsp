@@ -86,7 +86,7 @@
         <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
         
         <div class="mt-4 mb-3 text-center">
-            <a href="/login" align="center">Back to login</a>
+            <a href="<%=request.getContextPath()%>/login">Back to login</a>
         </div>
   </form>
  </div>

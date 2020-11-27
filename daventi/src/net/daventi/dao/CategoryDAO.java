@@ -12,10 +12,6 @@ import java.util.List;
 import net.daventi.model.Category;
 
 public class CategoryDAO {
-	private String url = "jdbc:mysql://node5959-daventi.ams.cloudswitches.com/DaVentiDB";
-	private String user = "root";
-	private String pass = "BTMxod62246";
-	
 	private static final String INSERT_CATEGORY_SQL = "INSERT INTO category" + "  (id_category, name_category) VALUES "
 			+ " (?, ?);";
 	
@@ -28,7 +24,7 @@ public class CategoryDAO {
 		Connection connection = null;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			connection = DriverManager.getConnection(url, user, pass);
+			connection = DriverManager.getConnection(DaVentiConstants.URL, DaVentiConstants.USER, DaVentiConstants.PASS);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

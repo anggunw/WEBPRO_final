@@ -11,10 +11,6 @@ import java.util.List;
 import net.daventi.model.Author;
 
 public class AuthorDAO {
-	private String url = "jdbc:mysql://node5959-daventi.ams.cloudswitches.com/DaVentiDB";
-	private String user = "root";
-	private String pass = "BTMxod62246";
-	
 	private static final String INSERT_AUTHOR_SQL = "INSERT INTO author" + "(id_author, name_author) VALUES" + "(?, ?);";
 	
 	private static final String SELECT_AUTHOR_BY_ID = "select id_author, name_author from author where id_author=?";
@@ -26,7 +22,7 @@ public class AuthorDAO {
 		Connection connection = null;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			connection = DriverManager.getConnection(url, user, pass);
+			connection = DriverManager.getConnection(DaVentiConstants.URL, DaVentiConstants.USER, DaVentiConstants.PASS);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
