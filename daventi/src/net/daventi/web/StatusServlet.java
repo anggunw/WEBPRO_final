@@ -11,16 +11,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.daventi.dao.CategoryDAO;
-import net.daventi.model.Category;
+import net.daventi.dao.StatusDAO;
+import net.daventi.model.Status;
+import net.daventi.model.Status;
 
-@WebServlet("/category")
-public class CategoryServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	private CategoryDAO categoryDAO;
+
+/**
+ * Servlet implementation class StatusServlet
+ */
+@WebServlet("/status")
+public class StatusServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;  
+	private StatusDAO statusDAO;
 	
 	public void init() {
-		categoryDAO = new CategoryDAO();
+		statusDAO = new StatusDAO();
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -33,13 +38,13 @@ public class CategoryServlet extends HttpServlet {
 		try {
 			switch (action) {
 			case "DELETE":
-				deleteCategory(request, response);
+				deleteStatus(request, response);
 				break;
 			case "EDIT":
 				showEditForm(request, response);
 				break;
 			default:
-				listCategory(request, response);
+				listStatus(request, response);
 				break;
 			}
 		} catch (SQLException ex) {
@@ -52,9 +57,13 @@ public class CategoryServlet extends HttpServlet {
 		
 		String action = request.getParameter("type");
 
-		Category category = new Category();
-		category.setId_category(request.getParameter("id_category"));
-		category.setName_category(request.getParameter("name_category"));
+		Status status = new Status();
+		status.setId_status(request.getParameter("id_status"));
+		status.setName_status(request.getParameter("name_status"));
+		
+		System.out.println(action);
+		System.out.println(request.getParameter("id_status"));
+		System.out.println(request.getParameter("name_status"));
 		
 		if(action == null) {
 			action = "list";
@@ -62,13 +71,13 @@ public class CategoryServlet extends HttpServlet {
 		try {
 			switch (action) {
 			case "INSERT":
-				categoryDAO.insertCategory(category);
+				statusDAO.insertStatus(status);
 				break;
 			case "UPDATE":
-				categoryDAO.updateCategory(category);
+				statusDAO.updateStatus(status);
 				break;
 			default:
-				listCategory(request, response);
+				listStatus(request, response);
 				break;
 			}
 		} catch (SQLException ex) {
@@ -76,35 +85,35 @@ public class CategoryServlet extends HttpServlet {
 		}
 		
 		try {
-			listCategory(request, response);
+			listStatus(request, response);
 		} catch (SQLException | IOException | ServletException e) {
 			e.printStackTrace();
 		}
 	}
 
-	private void listCategory(HttpServletRequest request, HttpServletResponse response)
+	private void listStatus(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
-		List<Category> listCategory = categoryDAO.selectAllCategory();
-		request.setAttribute("listCategory", listCategory);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("category/category-list.jsp");
+		List<Status> listStatus = statusDAO.selectAllStatus();
+		request.setAttribute("listStatus", listStatus);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("status/status-list.jsp");
 		dispatcher.forward(request, response);
 	}
 	
 	private void showEditForm(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, ServletException, IOException {
-		String id_category = request.getParameter("id_category");
+		String id_status = request.getParameter("id_status");
 		
-		Category existingCategory = categoryDAO.selectCategory(id_category);
-		request.setAttribute("category", existingCategory);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("category/category-form.jsp");
+		Status existingStatus = statusDAO.selectStatus(id_status);
+		request.setAttribute("status", existingStatus);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("status/status-form.jsp");
 		dispatcher.forward(request, response);
 	}
 
-	private void deleteCategory(HttpServletRequest request, HttpServletResponse response) 
+	private void deleteStatus(HttpServletRequest request, HttpServletResponse response) 
 			throws SQLException, IOException {
 
-		String id_category = request.getParameter("id_category");
-		categoryDAO.deleteCategory(id_category);
-		response.sendRedirect("category");
+		String id_status = request.getParameter("id_status");
+		statusDAO.deleteStatus(id_status);
+		response.sendRedirect("status");
 	}
 }

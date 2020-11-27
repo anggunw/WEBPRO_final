@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-<title>Da Venti - Category</title>
+<title>Da Venti - Status</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
@@ -36,41 +36,41 @@
 	<div class="container col-md-5">
 		<div class="card">
 			<div class="card-body">		
-				<form action="${pageContext.request.contextPath}/category" method="post">
+				<form action="${pageContext.request.contextPath}/status" method="post">
 				
 				<caption>
 					<h2>
-						<c:if test="${category != null}">
-            				Edit Category
+						<c:if test="${status != null}">
+            				Edit Status
             			</c:if>
-						<c:if test="${category == null}">
-            				Add New Category
+						<c:if test="${status == null}">
+            				Add New Status
             			</c:if>
 					</h2>
 				</caption>
 
-				<c:if test="${category != null}">
+				<c:if test="${status != null}">
 					<fieldset class="form-group">
-						<label>Category ID</label> <input type="text" readonly
-							value="<c:out value='${category.id_category}' />" class="form-control"
-							name="id_category">
+						<label>Status ID</label> <input type="text" readonly
+							value="<c:out value='${status.id_status}' />" class="form-control"
+							name="id_status">
 					</fieldset>
 					<input type="hidden" name="type" value="UPDATE" />
 				</c:if>
 				
-				<c:if test="${category == null}">
+				<c:if test="${status == null}">
 					<fieldset class="form-group">
-						<label>Category ID</label> <input type="text"
-							value="<c:out value='${category.id_category}' />" class="form-control"
-							name="id_category" required="required">
+						<label>Status ID</label> <input type="text"
+							value="<c:out value='${status.id_status}' />" class="form-control"
+							name="id_status" required="required">
 					</fieldset>
 					<input type="hidden" name="type" value="INSERT" />
 				</c:if>
 				
 				<fieldset class="form-group">
-					<label>Category Name</label> <input type="text"
-						value="<c:out value='${category.name_category}' />" class="form-control"
-						name="name_category" required="required">
+					<label>Status Name</label> <input type="text"
+						value="<c:out value='${status.name_status}' />" class="form-control"
+						name="name_status" required="required">
 				</fieldset>
 				<button type="submit" class="btn btn-success">Save</button>
 				</form>

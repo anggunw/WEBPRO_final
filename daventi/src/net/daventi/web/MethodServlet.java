@@ -11,16 +11,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.daventi.dao.CategoryDAO;
-import net.daventi.model.Category;
+import net.daventi.dao.MethodDAO;
+import net.daventi.model.Method;
 
-@WebServlet("/category")
-public class CategoryServlet extends HttpServlet {
+/**
+ * Servlet implementation class MethodServlet
+ */
+@WebServlet("/method")
+public class MethodServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private CategoryDAO categoryDAO;
+	private MethodDAO methodDAO;
 	
 	public void init() {
-		categoryDAO = new CategoryDAO();
+		methodDAO = new MethodDAO();
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -33,13 +36,13 @@ public class CategoryServlet extends HttpServlet {
 		try {
 			switch (action) {
 			case "DELETE":
-				deleteCategory(request, response);
+				deleteMethod(request, response);
 				break;
 			case "EDIT":
 				showEditForm(request, response);
 				break;
 			default:
-				listCategory(request, response);
+				listMethod(request, response);
 				break;
 			}
 		} catch (SQLException ex) {
@@ -52,23 +55,24 @@ public class CategoryServlet extends HttpServlet {
 		
 		String action = request.getParameter("type");
 
-		Category category = new Category();
-		category.setId_category(request.getParameter("id_category"));
-		category.setName_category(request.getParameter("name_category"));
-		
+		Method method = new Method();
+		method.setId_method(request.getParameter("id_method"));
+		method.setName_method(request.getParameter("name_method"));
+		method.setDest_bank(request.getParameter("dest_bank"));
+
 		if(action == null) {
 			action = "list";
 		}
 		try {
 			switch (action) {
 			case "INSERT":
-				categoryDAO.insertCategory(category);
+				methodDAO.insertMethod(method);
 				break;
 			case "UPDATE":
-				categoryDAO.updateCategory(category);
+				methodDAO.updateMethod(method);
 				break;
 			default:
-				listCategory(request, response);
+				listMethod(request, response);
 				break;
 			}
 		} catch (SQLException ex) {
@@ -76,35 +80,39 @@ public class CategoryServlet extends HttpServlet {
 		}
 		
 		try {
-			listCategory(request, response);
+			listMethod(request, response);
 		} catch (SQLException | IOException | ServletException e) {
 			e.printStackTrace();
 		}
 	}
 
-	private void listCategory(HttpServletRequest request, HttpServletResponse response)
+	private void listMethod(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
-		List<Category> listCategory = categoryDAO.selectAllCategory();
-		request.setAttribute("listCategory", listCategory);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("category/category-list.jsp");
+		List<Method> listMethod = methodDAO.selectAllMethod();
+		request.setAttribute("listMethod", listMethod);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("method/method-list.jsp");
 		dispatcher.forward(request, response);
 	}
 	
 	private void showEditForm(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, ServletException, IOException {
-		String id_category = request.getParameter("id_category");
+		String id_method = request.getParameter("id_method");
 		
-		Category existingCategory = categoryDAO.selectCategory(id_category);
-		request.setAttribute("category", existingCategory);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("category/category-form.jsp");
+		Method existingMethod = methodDAO.selectMethod(id_method);
+		System.out.println(existingMethod.getId_method());
+		System.out.println(existingMethod.getName_method());
+		System.out.println(existingMethod.getDest_bank());
+
+		request.setAttribute("method", existingMethod);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("method/method-form.jsp");
 		dispatcher.forward(request, response);
 	}
 
-	private void deleteCategory(HttpServletRequest request, HttpServletResponse response) 
+	private void deleteMethod(HttpServletRequest request, HttpServletResponse response) 
 			throws SQLException, IOException {
 
-		String id_category = request.getParameter("id_category");
-		categoryDAO.deleteCategory(id_category);
-		response.sendRedirect("category");
+		String id_method = request.getParameter("id_method");
+		methodDAO.deleteMethod(id_method);
+		response.sendRedirect("method");
 	}
 }

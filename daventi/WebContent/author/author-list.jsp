@@ -18,12 +18,16 @@
 			</div>
 	
 			<ul class="navbar-nav">
-				<li><a href="<%=request.getContextPath()%>/category/list"
+				<li><a href="<%=request.getContextPath()%>/category"
 					class="nav-link">Categories</a></li>
 				<li><a href="<%=request.getContextPath()%>/author/list"
 					class="nav-link">Author</a></li>
 				<li><a href="<%=request.getContextPath()%>/publisher/list"
 					class="nav-link">Publisher</a></li>
+				<li><a href="<%=request.getContextPath()%>/status"
+					class="nav-link">Status</a></li>
+				<li><a href="<%=request.getContextPath()%>/method"
+					class="nav-link">Payment Method</a></li>
 			</ul>
 		</nav>
 	</header>

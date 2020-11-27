@@ -18,7 +18,7 @@
 			</div>
 	
 			<ul class="navbar-nav">
-				<li><a href="<%=request.getContextPath()%>/category/list"
+				<li><a href="<%=request.getContextPath()%>/category"
 					class="nav-link">Categories</a></li>
 				<li><a href="<%=request.getContextPath()%>/author/list"
 					class="nav-link">Author</a></li>

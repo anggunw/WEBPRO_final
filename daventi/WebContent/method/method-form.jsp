@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-<title>Da Venti - Category</title>
+<title>Da Venti - Method</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
@@ -28,7 +28,7 @@
 					<li><a href="<%=request.getContextPath()%>/status"
 						class="nav-link">Status</a></li>
 					<li><a href="<%=request.getContextPath()%>/method"
-						class="nav-link">Payment Method</a></li>
+						class="nav-link">Payment Method</a></li>					
 				</ul>
 			</nav>
 		</header>
@@ -36,42 +36,49 @@
 	<div class="container col-md-5">
 		<div class="card">
 			<div class="card-body">		
-				<form action="${pageContext.request.contextPath}/category" method="post">
+				<form action="${pageContext.request.contextPath}/method" method="post">
 				
 				<caption>
 					<h2>
-						<c:if test="${category != null}">
-            				Edit Category
+						<c:if test="${method != null}">
+            				Edit Payment Method
             			</c:if>
-						<c:if test="${category == null}">
-            				Add New Category
+						<c:if test="${method == null}">
+            				Add New Payment Method
             			</c:if>
 					</h2>
 				</caption>
 
-				<c:if test="${category != null}">
+				<c:if test="${method != null}">
 					<fieldset class="form-group">
-						<label>Category ID</label> <input type="text" readonly
-							value="<c:out value='${category.id_category}' />" class="form-control"
-							name="id_category">
+						<label>ID</label> <input type="text" readonly
+							value="<c:out value='${method.id_method}' />" class="form-control"
+							name="id_method">
 					</fieldset>
 					<input type="hidden" name="type" value="UPDATE" />
 				</c:if>
 				
-				<c:if test="${category == null}">
+				<c:if test="${method == null}">
 					<fieldset class="form-group">
-						<label>Category ID</label> <input type="text"
-							value="<c:out value='${category.id_category}' />" class="form-control"
-							name="id_category" required="required">
+						<label>ID</label> <input type="text"
+							value="<c:out value='${method.id_method}' />" class="form-control"
+							name="id_method" required="required">
 					</fieldset>
 					<input type="hidden" name="type" value="INSERT" />
 				</c:if>
 				
 				<fieldset class="form-group">
-					<label>Category Name</label> <input type="text"
-						value="<c:out value='${category.name_category}' />" class="form-control"
-						name="name_category" required="required">
+					<label>Payment Method</label> <input type="text"
+						value="<c:out value='${method.name_method}' />" class="form-control"
+						name="name_method" required="required">
 				</fieldset>
+				
+				<fieldset class="form-group">
+					<label>Destination Bank</label> <input type="text"
+						value="<c:out value='${method.dest_bank}' />" class="form-control"
+						name="dest_bank" required="required">
+				</fieldset>
+				
 				<button type="submit" class="btn btn-success">Save</button>
 				</form>
 			</div>

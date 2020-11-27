@@ -14,6 +14,10 @@ public class Category {
 		super();
 		this.name_category = name_category;
 	}
+	
+	public Category() {
+		super();
+	}
 
 	public String getId_category() {
 		return id_category;
