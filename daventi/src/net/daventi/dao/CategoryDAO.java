@@ -8,12 +8,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sun.org.apache.xalan.internal.templates.Constants;
+
 import net.daventi.model.Category;
 
 public class CategoryDAO {
-	private String url = "jdbc:mysql://node5959-daventi.ams.cloudswitches.com/DaVentiDB";
-	private String user = "root";
-	private String pass = "BTMxod62246";
+	private String url = DaVentiConstants.URL;
+	private String user = DaVentiConstants.USER;
+	private String pass = DaVentiConstants.PASS;
 	
 	private static final String INSERT_CATEGORY_SQL = "INSERT INTO category" + "  (id_category, name_category) VALUES "
 			+ " (?, ?);";
