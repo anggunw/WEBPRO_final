@@ -45,10 +45,11 @@ public class PromoDAO {
 			preparedStatement.setString(1, promo.getId_promo());
 			preparedStatement.setString(2, promo.getName_promo());
 			preparedStatement.setFloat(3, promo.getDiscount());
-			preparedStatement.setString(4, (String) promo.getStart_discount());
-			preparedStatement.setString(5, (String) promo.getEnd_discount());
+			preparedStatement.setString(4, promo.getStart_discount());
+			preparedStatement.setString(5, promo.getEnd_discount());
 
 			preparedStatement.executeUpdate();
+			
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -61,8 +62,8 @@ public class PromoDAO {
 				PreparedStatement statement = connection.prepareStatement(UPDATE_PROMO_SQL);){
 			statement.setString(1, promo.getName_promo());
 			statement.setFloat(2, promo.getDiscount());
-			statement.setString(3, (String) promo.getStart_discount());
-			statement.setString(4, (String) promo.getEnd_discount());
+			statement.setString(3, promo.getStart_discount());
+			statement.setString(4, promo.getEnd_discount());
 			statement.setString(5, promo.getId_promo());
 			rowUpdated = statement.executeUpdate() > 0;
 		}

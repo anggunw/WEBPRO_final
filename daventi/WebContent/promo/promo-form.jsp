@@ -83,15 +83,15 @@
 				</fieldset>
 				
 				<fieldset class="form-group">
-					<label>Start Discount</label> <input type="date"
+					<label>Discount</label> <input type="text"
 						value="<c:out value='${promo.start_discount}' />" class="form-control"
-						name="discount" required="required">
+						name="start_discount" required="required" placeholder="dd/mm/yyyy">
 				</fieldset>
 				
 				<fieldset class="form-group">
-					<label>End Discount</label> <input type="date"
+					<label>Discount</label> <input type="text"
 						value="<c:out value='${promo.end_discount}' />" class="form-control"
-						name="discount" required="required">
+						name="end_discount" required="required" placeholder="dd/mm/yyyy">
 				</fieldset>
 				
 				<button type="submit" class="btn btn-success">Save</button>

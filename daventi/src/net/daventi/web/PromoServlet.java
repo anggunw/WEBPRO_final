@@ -62,6 +62,8 @@ public class PromoServlet extends HttpServlet {
 		promo.setDiscount(Float.valueOf(request.getParameter("discount")));
 		promo.setStart_discount(request.getParameter("start_discount"));
 		promo.setEnd_discount(request.getParameter("end_discount"));
+		
+		System.out.println(promo.getStart_discount());
 
 		if(action == null) {
 			action = "list";

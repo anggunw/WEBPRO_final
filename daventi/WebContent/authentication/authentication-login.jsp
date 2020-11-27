@@ -23,6 +23,14 @@
         padding: 15px;
         margin: auto;
         }
+        
+        .vertical-center {
+        min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+        min-height: 100vh; /* These two lines are counted as one :-)       */
+        width: 100%;
+        display: flex;
+        align-items: center;
+        }
     </style>
 
 <html>
@@ -31,7 +39,7 @@
 	<title>Login</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 </head>
-<body>
+<body class="vertical-center">
   <form action="<%= request.getContextPath() %>/login" class="form-signin" method="post" align="center">
         <h1 class="h3 mb-3 font-weight-normal">Da Venti Admin Login</h1>
         <div class="input-group mb-3">
